@@ -94,6 +94,28 @@ ifeq ($(PDK),gf180mcuC)
 
 endif
 
+# allow working with git on an linux + ntfs file system
+
+.PHONY: configure-for-linux-ntfs
+configure-for-linux-ntfs: mark-dirs-safe disable-git-filemode-check
+
+.PHONY: mark-dirs-safe
+mark-dirs-safe:
+	git config --global --add safe.directory $(PWD)
+	git config --global --add safe.directory $(PWD)/verilog/rtl/qspim;
+	git config --global --add safe.directory $(PWD)/verilog/dv/common/riscduino_board;
+	git config --global --add safe.directory $(PWD)/verilog/rtl/yifive/ycr1c;
+	git config --global --add safe.directory $(PWD)/verilog/rtl/security_core;
+	git config --global --add safe.directory $(PWD)/verilog/rtl/fpu;
+	git config --global --add safe.directory $(PWD)/verilog/rtl/rtc;
+
+.PHONY: disable-git-filemode-check
+disable-git-filemode-check:
+	git config core.filemode false
+	git submodule foreach --recursive git config core.filemode false
+
+########################
+
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
