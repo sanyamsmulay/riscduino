@@ -16,6 +16,7 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export CARAVEL_ROOT?=$(PWD)/caravel
+export PDK_ROOT?=$(PWD)/pdks
 PRECHECK_ROOT?=${HOME}/mpw_precheck
 export MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
@@ -35,8 +36,8 @@ export PDKPATH?=$(PDK_ROOT)/$(PDK)
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
-	export OPENLANE_TAG?=2022.10.20
-	MPW_TAG ?= mpw-7g
+	export OPENLANE_TAG?=v0.23
+	MPW_TAG ?= mpw-9a
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -66,8 +67,8 @@ RISCV_TEST_BRANCH =  e30978a71921159aec38eeefd848fca4ed39a826
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
-	export OPENLANE_TAG?=2022.10.20
-	MPW_TAG ?= mpw-7g
+	export OPENLANE_TAG?=v0.23
+	MPW_TAG ?= mpw-9a
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite

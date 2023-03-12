@@ -14,11 +14,13 @@
 # SPDX-License-Identifier: Apache-2.0
 #SHELL = sh -xv
 
+export OPENLANE_ROOT?=$(PWD)/../openlane_project
+export SKYWATER_COMMIT?=49d3c73c2cd8ea42cdae5056440baef0f72e7e42
 BLOCKS = $(shell find * -maxdepth 0 -type d)
 CONFIG = $(foreach block,$(BLOCKS), ./$(block)/config.tcl)
 CLEAN = $(foreach block,$(BLOCKS), clean-$(block))
 
-OPENLANE_TAG = mpw9
+OPENLANE_TAG = "2023.03.08"
 OPENLANE_IMAGE_NAME = riscduino/openlane:$(OPENLANE_TAG)
 OPENLANE_BASIC_COMMAND = "cd $(PWD)/../openlane && flow.tcl -design ./$* -save_path .. -save -tag $* -overwrite"
 OPENLANE_INTERACTIVE_COMMAND = "cd $(PWD)/../openlane && flow.tcl -design ./$* -save_path .. -save -tag $* -overwrite -it -file ./$*/interactive.tcl"
